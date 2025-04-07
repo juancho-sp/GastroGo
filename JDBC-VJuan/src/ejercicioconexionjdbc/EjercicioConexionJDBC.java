@@ -89,5 +89,31 @@ System.out.println("----INICIANDO CONSULTA----");
             Logger.getLogger(EjercicioConexionJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("----CONSULTA REALIZADA----");
+        
+//ELIMINAR DATO
+        System.out.println("----ELIMINANDO USUARIO----");
+        try { // para evitar problema que pueda presentarse
+            conexion = DriverManager.getConnection(url,usuario,password); // son las variables que definimos para conectarnos
+            statemen = conexion.createStatement(); //permite consultar con sql
+            statemen.executeUpdate("DELETE FROM usuario WHERE id = 2;"); // Eliminando a Fran
+        } catch (SQLException ex) {
+            Logger.getLogger(EjercicioConexionJDBC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("----USUARIO ELIMINADO----");
+        
+//CONSULTAR DATOS 
+        System.out.println("----INICIANDO CONSULTA----");
+        try { // para evitar problema que pueda presentarse
+            conexion = DriverManager.getConnection(url,usuario,password); // son las variables que definimos para conectarnos
+            statemen = conexion.createStatement(); //permite consultar con sql
+            rs = statemen.executeQuery("SELECT * FROM usuarios"); // para guardar los datos pero se debe usar una sentencia soporte para q avance lineas con cada fila
+            rs.next(); // este salta la linea
+            do {
+                System.out.println(rs.getInt("id_usuarios")+" : "+rs.getString("username")+" : "+rs.getString("password") );// imprime en pantalla
+            }while (rs.next()); // sigue mostrando mientras queden pendientes en el rs 
+        } catch (SQLException ex) {
+            Logger.getLogger(EjercicioConexionJDBC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("----CONSULTA REALIZADA----");
     }
 }
