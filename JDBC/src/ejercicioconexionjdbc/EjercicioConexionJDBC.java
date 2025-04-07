@@ -95,7 +95,7 @@ System.out.println("----INICIANDO CONSULTA----");
         try { // para evitar problema que pueda presentarse
             conexion = DriverManager.getConnection(url,usuario,password); // son las variables que definimos para conectarnos
             statemen = conexion.createStatement(); //permite consultar con sql
-            statemen.executeUpdate("DELETE FROM usuario WHERE id = 2;"); // Eliminando a Fran
+            statemen.executeUpdate("DELETE FROM usuarios WHERE username = 'FranEmilio';"); // Eliminando a Fran
         } catch (SQLException ex) {
             Logger.getLogger(EjercicioConexionJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
