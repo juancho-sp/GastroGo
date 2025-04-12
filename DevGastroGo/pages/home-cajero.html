@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="../css/style.css" rel="stylesheet" >
+        <title>GastroGo</title>
+    </head>
+<body>
+    <header>
+        <div class="container card-headerborder-bottom custom-border-bottom p-0 w-100">
+            <div class="row align-items-center">
+                <div class="col-4 d-flex justify-content-center p-2">
+                    <img src="../img/LogoRicuras.png" alt="logoricuras" class="img-fluid w-25">
+                </div>
+                <div class="col-4 text-center align-content-center ms-lg-auto"><h2 class="display-5 text-white">GastroGo</h2></div>
+                <div class="col-4 d-flex p-2 justify-content-end">
+                    <div class="collapse " id="navbarToggleExternalContent">
+                        <div class="bg-dark p-4 ">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link enlace" href="#SeleccionarRol">Cambiar Rol</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link enlace-cerrar" href="#ConfirmaCerrarSesion">Cerrar Sesion
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-dark">
+                        <div class="container w-100 ">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+            </div>    
+        </div>       
+    </header>
+<!--Aca termina el header-->
+    <nav class="container  p-3"> <!--Tabs para menús de trabajo-->
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active enlace" id="nav-NuevoPedido-tab" data-bs-toggle="tab" data-bs-target="#nav-NuevoPedido" type="button" role="tab" aria-controls="nav-NuevoPedido" aria-selected="true">Nuevo pedido</button>
+            <button class="nav-link enlace" id="nav-DetallePedido-tab" data-bs-toggle="tab" data-bs-target="#nav-DetallePedido" type="button" role="tab" aria-controls="nav-DetallePedido" aria-selected="true">Detalle pedido</button>
+            <button class="nav-link enlace" id="nav-EstadoPedidos-tab" data-bs-toggle="tab" data-bs-target="#nav-EstadoPedidos" type="button" role="tab" aria-controls="nav-EstadoPedidos" aria-selected="true">Estado pedidos</button>
+            <button class="nav-link enlace" id="nav-BalanceCaja-tab" data-bs-toggle="tab" data-bs-target="#nav-BalanceCaja" type="button" role="tab" aria-controls="nav-BalanceCaja" aria-selected="true">Balance caja</button>
+        </div>
+    </nav>
+
+    
+    <div class="tab-content container mb-3" id="nav-tabContent">
+    <!--Tab para nuevo pedido-->
+        <div class="tab-pane fade show active" id="nav-NuevoPedido" role="tabpanel" aria-labelledby="nav-NuevoPedido-tab">
+            <section class="container"> 
+            </section>
+        </div>
+            <!--Tab para detal  le pedido-->
+        <div class="tab-pane fade" id="nav-DetallePedido" role="tabpanel" aria-labelledby="nav-DetallePedido-tab">
+            <section class="container">
+            </section>
+        </div>
+    <!--Tab para estado pedidos-->
+        <div class="tab-pane fade" id="nav-EstadoPedidos" role="tabpanel" aria-labelledby="nav-EstadoPedidos-tab">
+            <section class="container">
+            </section>
+        </div>
+    <!--Tab para el balance de caja-->
+        <div class="tab-pane fade" id="nav-BalanceCaja" role="tabpanel" aria-labelledby="nav-BalanceCaja-tab">
+            <section class="container color-fire-brick rounded">
+                <div class="row">
+                    <!-- Columna de Ingresos -->
+                    <div class="col-md-6">
+                        <div class="balance-section">
+                            <h2>Ingresos</h2>
+                            <div class="input-group">
+                                <label for="ventas-dia">Ventas del día:</label>
+                                <input type="text" id="ventas-dia" value="$0">
+                            </div>
+                            <div class="input-group">
+                                <label for="otros-ingresos">Otros ingresos:</label>
+                                <input type="text" id="otros-ingresos" value="$0">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Columna de Egresos -->
+                    <div class="col-md-6">
+                        <div class="balance-section">
+                            <h2>Egresos</h2>
+                            <div class="input-group">
+                                <label for="compras-dia">Compras del día</label>
+                                <input type="text" id="compras-dia" value="$0">
+                            </div>
+                            <div class="input-group">
+                                <label for="gastos-operativos">Gastos Operativos</label>
+                                <input type="text" id="gastos-operativos" value="$0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Resumen de Totales -->
+                <div class="row mt-4">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="summary">
+                            <div class="input-group">
+                                <label>Total ingresos</label>
+                                <input type="text" id="total-ingresos" value="$0" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Total egresos</label>
+                                <input type="text" id="total-egresos" value="$0" readonly>
+                            </div>
+                            <div class="input-group final-balance">
+                                <label>Balance final</label>
+                                <input type="text" id="balance-final" value="$0" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+<!--Aca termina el contenido importante-->
+    <footer>
+        <div class="container card-headerborder-top custom-border-top p-0 w-100">
+            <div class="row">
+                <div class="col-6 d-flex flex-column">
+                    <h3 class="display-7 text-white">Contacto</h3>
+                    <p class="text-white m-0">Complex, Llanogrande, Rionegro</p>
+                    <p class="text-white m-0">+57 312 270 95 07</p>
+                </div>
+                <div class="col-6">
+                    <div class="container">
+                        <div class="row"><h4 class="display-7 text-white justify-content-end d-flex">Terminos y condiciones</h4></div>
+                        <div class="row"><p class="text-white mt-auto justify-content-end d-flex">By PowerDev</p></div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
