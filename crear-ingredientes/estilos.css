@@ -1,0 +1,31 @@
+.custom-btn {
+    background-color: #AE392C; 
+  
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-btn:hover {
+    background-color: #FCDC10; 
+  }
+  
+  
+  
+  input[type="date"]:hover {
+    border-color: #ff6600; 
+   
+  }
+  
+  input[type="text"]:hover {
+    border-color: #ff6600; 
+   
+  }
+  
+  input[type="number"]:hover {
+    border-color: #ff6600; 
+   
+  }
+  
+  
+  select.form-select:hover {
+    border-color: #ff6600;
+    
