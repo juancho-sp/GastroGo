@@ -21,13 +21,13 @@ public class UsuarioController {
 	@GetMapping
 	public String listarUsuarios(Model model) {		
 		model.addAttribute("usuarios", usuarioService.listarTodas());
-		return "usuario-list";
+		return "home-admin-editar";
 	}
 	
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevoUsuario(Model model) {
         model.addAttribute("usuario", new Usuario()); 
-        return "usuario-form";
+        return "home-admin-crear";
     }
 	
 	@PostMapping
@@ -39,7 +39,7 @@ public class UsuarioController {
 	@GetMapping("/editar/{id}")
 	public String mostrarFormularioEditarUsuario(@PathVariable Long id, Model model) {
 		model.addAttribute("usuario", usuarioService.obtenerPorId(id));
-		return "usuario-form";
+		return "home-admin-crear";
 	}
 	
 	@GetMapping("/eliminar/{id}")
