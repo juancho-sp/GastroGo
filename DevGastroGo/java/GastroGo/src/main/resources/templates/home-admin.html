@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet" >
+        <title>GastroGo</title>
+    </head>
+<body>
+    <header>
+        <div class="container card-headerborder-bottom custom-border-bottom p-0 w-100">
+            <div class="row align-items-center">
+                <div class="col-4 d-flex justify-content-center p-2">
+                    <img src="img/LogoRicuras.png" alt="logoricuras" class="img-fluid w-25">
+                </div>
+                <div class="col-4 text-center align-content-center ms-lg-auto"><h2 class="display-5 text-white">GastroGo</h2></div>
+                <div class="col-4 d-flex p-2 justify-content-end">
+                    <div class="collapse " id="navbarToggleExternalContent">
+                        <div class="bg-dark p-4 ">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link enlace" href="#SeleccionarRol">Cambiar Rol</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link enlace-cerrar" href="#ConfirmaCerrarSesion">Cerrar Sesion
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-dark">
+                        <div class="container w-100 ">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+            </div>    
+        </div>       
+    </header>
+<!--Aca termina el header-->
+
+    <nav class="container  p-3"> <!--Tabs para menús de trabajo-->
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active enlace" id="nav-NuevoUsuario-tab" data-bs-toggle="tab" data-bs-target="#nav-NuevoUsuario" type="button" role="tab" aria-controls="nav-NuevoUsuario" aria-selected="true">Nuevo Usuario</button>
+            <button class="nav-link enlace" id="nav-EditarUsuario-tab" data-bs-toggle="tab" data-bs-target="#nav-EditarUsuario" type="button" role="tab" aria-controls="nav-EditarUsuario" aria-selected="true">Editar Usuario</button>
+            <button class="nav-link enlace" id="nav-DetallePedido-tab" data-bs-toggle="tab" data-bs-target="#nav-DetallePedido" type="button" role="tab" aria-controls="nav-DetallePedido" aria-selected="true">Consultar pedido</button>
+            <button class="nav-link enlace" id="nav-CrearIngrediente-tab" data-bs-toggle="tab" data-bs-target="#nav-CrearIngrediente" type="button" role="tab" aria-controls="nav-CrearIngrediente" aria-selected="true">Crear Ingrediente</button>
+            <button class="nav-link enlace" id="nav-BalanceCaja-tab" data-bs-toggle="tab" data-bs-target="#nav-BalanceCaja" type="button" role="tab" aria-controls="nav-BalanceCaja" aria-selected="true">Crear Plato</button>
+        </div>
+    </nav>
+
+    <!--Inicio tab-->
+    <div class="tab-content container mb-2" id="nav-tabContent">
+    <!--Tab para nuevo usuario-->
+        <div class="tab-pane fade show active" id="nav-NuevoUsuario" role="tabpanel" aria-labelledby="nav-NuevoUsuario-tab">
+            <section class="container">
+                <div class="row justify-content-center">
+                    <div class="col w-auto">
+                        <div class="card p-4">
+                            <h3 class="card-title text-center mb-4">Crear Usuario</h3>
+                            <h1 th:text="${usuario.id} == null ? 'Crear Usuario' : 'Actualizar Usuario'"></h1>
+                            <form th:action="@{/usuario}" method="post" th:object="${usuario}">
+                                <input type="hidden" th:field="*{id}"/>
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre Completo</label>
+                                    <input type="text" class="form-control" id="firstName" th:field="*{nombre}" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="email" th:field="*{email}" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label">Telefono</label>
+                                    <input type="text" class="form-control" id="telefono" th:field="*{telefono}" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="numero_documento" class="form-label">Número de Documento</label>
+                                    <input type="text" class="form-control" id="numero_documento" th:field="*{numero_documento}" required/>
+                                </div>
+                                <button type="submit" class="btn btn-fire w-100 mt-3">Crear Usuario</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>               
+        </div>
+    <!--Tab para editar usuario-->
+    <div class="tab-pane fade" id="nav-EditarUsuario" role="tabpanel" aria-labelledby="nav-EditarUsuario-tab">
+        <section class="container bg-white rounded">
+            <h3 class="text-center p-2">Editar Usuario</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID de usuario </th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Tipo de Documento</th>
+                            <th>Número de documento</th>
+                            <th>Fecha de Nacimiento</th>
+                            <th>Nombre de usuario</th>
+                            <th>Correo Electrónico</th>
+                            <th>Contraseña</th>
+                            <th>Rol</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Juan</td>
+                            <td>Perez</td>
+                            <td>CC</td>
+                            <td>121212121</td>
+                            <td>06/06/1982</td>
+                            <td>juan.perez</td>
+                            <td>juan.perez@email.com</td>
+                            <td>*********</td>
+                            <td>Cajero</td>
+                            <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="loadUserData('Juan', 'Pérez', 'juan.perez@email.com')">Editar</button></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Ana</td>
+                            <td>Gpmez</td>
+                            <td>CC</td>
+                            <td>48418545451</td>
+                            <td>01/01/1999</td>
+                            <td>ana.gomez</td>
+                            <td>ana.gomez@email.com</td>
+                            <td>*********</td>
+                            <td>Cocinero</td>
+                            <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="loadUserData('Ana', 'Gomez', 'ana.gomez@email.com')">Editar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editUserForm">
+                            <div class="mb-3">
+                                <label for="editName" class="form-label">Nombres</label>
+                                <input type="text" class="form-control" id="editName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSurname" class="form-label">Apellidos</label>
+                                <input type="text" class="form-control" id="editSurname" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSurname" class="form-label">Tipo de Documento</label>
+                                <input type="text" class="form-control" id="tipoDoc" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSurname" class="form-label">Número Documento</label>
+                                <input type="text" class="form-control" id="numDocumento" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSurname" class="form-label">Fecha de Nacimiento</label>
+                                <input type="text" class="form-control" id="fechaNacimiento" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSurname" class="form-label">Nombre de usuario</label>
+                                <input type="text" class="form-control" id="nombreUsuario" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editEmail" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="editEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSurname" class="form-label">Contraseña</label>
+                                <input type="text" class="form-control" id="nuevaContrasena" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSurname" class="form-label">Rol</label>
+                                <input type="text" class="form-control" id="editRol" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <!--Tab para detalle pedido-->
+        <div class="tab-pane fade" id="nav-DetallePedido" role="tabpanel" aria-labelledby="nav-DetallePedido-tab">
+            <section class="container">
+                
+            </section>
+        </div>
+    <!--Tab para estado pedidos-->
+        <div class="tab-pane fade" id="nav-CrearIngrediente" role="tabpanel" aria-labelledby="nav-CrearIngrediente-tab">
+            <section class="container">
+            </section>
+        </div>
+    <!--Tab para el balance de caja-->
+        <div class="tab-pane fade" id="nav-BalanceCaja" role="tabpanel" aria-labelledby="nav-BalanceCaja-tab">
+            <section class="container color-fire-brick">
+            </section>
+        </div>
+    </div>
+<!--Aca termina el contenido importante-->
+    <footer>
+        <div class="container card-headerborder-top custom-border-top p-0 w-100">
+            <div class="row">
+                <div class="col-6 d-flex flex-column">
+                    <h3 class="display-7 text-white">Contacto</h3>
+                    <p class="text-white m-0">Complex, Llanogrande, Rionegro</p>
+                    <p class="text-white m-0">+57 312 270 95 07</p>
+                </div>
+                <div class="col-6">
+                    <div class="container">
+                        <div class="row"><h4 class="display-7 text-white justify-content-end d-flex">Terminos y condiciones</h4></div>
+                        <div class="row"><p class="text-white mt-auto justify-content-end d-flex">By PowerDev</p></div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
