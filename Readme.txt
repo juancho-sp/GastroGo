@@ -7,3 +7,5 @@ CARPETAS
 * Fran: HTML creado por Fran
 
 * Script para crear base de datos: Ir actualizando a medida que se requiere conectar al modulo
+
+*Spring Java.rar: Es la evidencia entregada haciendo CRUD a la base de datos usuarios.
